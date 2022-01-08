@@ -1,0 +1,55 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap');
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Roboto', sans-serif;
+}
+body {
+  padding: 0 20px;
+  background-color: #ddd;
+}
+.App {
+  display: flex;
+  justify-content: center;
+  max-width: 1280px;
+  margin: 0 auto;
+  background: #fff;
+  min-height: 100vh;
+  box-shadow: 5px 0px 10px rgba(0, 0, 0, 0.3), -5px 0px 10px rgba(0, 0, 0, 0.3);
+}
+.editor {
+  border-right: 1px solid rgba(0, 0, 0, 0.3);
+  padding: 15px;
+  max-width: 320px;
+  h2 {
+    font-size: 36px;
+    margin-bottom: 20px;
+  }
+}
+.page {
+  padding: 15px;
+  width: 100%;
+  .page-title {
+    font-size: 36px;
+    margin-bottom: 20px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.3);
+  }
+  .page-block {
+    .heading-block, .paragraph-block {
+      margin-bottom: 10px;
+    }
+  }
+}
+
+.headings {
+  .flex {
+    display: flex;
+    justify-content: space-between;
+    grid-gap: 10px;
+  }
+  .css-1869usk-MuiFormControl-root {
+    margin: 15px 0;
+  }
+}

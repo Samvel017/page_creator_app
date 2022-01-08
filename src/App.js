@@ -1,25 +1,28 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from 'react';
+import './app.scss';
+import Editor from './Components/Editor/Editor';
+import Page from './Components/Page';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+export default class App extends Component {
+  state = {
+    pages: [],
+  };
+
+  pageAddHandler = (page) => {
+    console.log(page, 'page');
+    let array = [...this.state.pages, page];
+    console.log(array,'array');
+    this.setState({
+      pages: array,
+    });
+  };
+
+  render() {
+    return (
+      <div className="App">
+        <Editor pageAddHandler={this.pageAddHandler} />
+        <Page pages={this.state.pages}/>
+      </div>
+    );
+  }
 }
-
-export default App;
