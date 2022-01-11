@@ -35,6 +35,10 @@ body {
     margin-bottom: 20px;
     padding-bottom: 15px;
     border-bottom: 1px solid rgba(0, 0, 0, 0.3);
+    em {
+      font-size: 12px;
+      color: rgba(0, 0, 0, 0.4);
+    }
   }
   .page-block {
     .heading-block, .paragraph-block {
@@ -52,4 +56,43 @@ body {
   .css-1869usk-MuiFormControl-root {
     margin: 15px 0;
   }
+}
+.edit-input {
+  padding: 4px 12px;
+  font-size: 18px;
+  border: none;
+  border-bottom: 2px solid;
+}
+.edit-input:focus {
+  outline: none;
+  border-bottom: 3px solid;
+}
+.heading-block, .paragraph-block {
+  padding: 10px 15px;
+  border: 1px solid;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+  p,h1,h2,h3,h4,h5,h6 {
+    &:hover {
+      opacity: 0.7;
+    }
+  }
+}
+.css-1rwt2y5-MuiButtonBase-root-MuiButton-root {
+  color: red !important;
+  border: 1px solid red !important;
+  min-width: 0 !important;
+  padding: 5px 10px !important;
+}
+.edit-end {
+  color: rgb(0, 211, 0) !important;
+  min-width: 0 !important;
+  padding: 5px 10px !important;
+}
+.edit-tools {
+  display: flex;
+  align-items: center;
+  grid-gap: 20px;
 }

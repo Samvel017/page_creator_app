@@ -5,51 +5,7 @@ import ColorEdit from './ColorEdit';
 import { Button } from '@mui/material';
 
 export default class Headings extends Component {
-  state = {
-    text: '',
-    head: 'h1',
-    color: 'black',
-    type: 'heading'
-  };
-
   
-  inputValueHandler = (e) => {
-    this.setState({
-      text: e.target.value,
-    }); 
-  };
-  headValueHandler = (e) => {
-    this.setState({
-      head: e,
-    });
-  };
-  colorValueHandler = (e) => {
-    this.setState({
-      color: e,
-    });
-  };
-
-  addTextHandle = () =>{
-    if (this.state.text !== '') {
-      this.props.pageAddHandler({
-      text: this.state.text,
-      head: this.state.head,
-      color: this.state.color,
-      type: this.state.type
-    });
-    this.setState({
-      text: ''
-    })
-    this.setState({
-      color: 'black'
-    })
-    this.setState({
-      head: 'h1'
-    })
-    }else {
-      alert('Please fill all inputs!')
-    }
-  }
   render() {
     return (
       <div className="headings">
@@ -58,17 +14,17 @@ export default class Headings extends Component {
           label="Add text"
           variant="standard"
           sx={{ maxWidth: 350, width: '100%' }}
-          value={this.state.text}
-          onChange={this.inputValueHandler}
-          onKeyDown={(e) => e.keyCode === 13 && this.addTextHandle()}
+          value={this.props.states.text}
+          onChange={this.props.inputValueHandler}
+          onKeyDown={(e) => e.keyCode === 13 && this.props.addTextHandle()}
         />
         <div className="flex">
-          <HeadingEdit head={this.state.head} headValueHandler={this.headValueHandler} />
-          <ColorEdit color={this.state.color} colorValueHandler={this.colorValueHandler} />
+          <HeadingEdit head={this.props.states.head} headValueHandler={this.props.headValueHandler} />
+          <ColorEdit color={this.props.states.color} colorValueHandler={this.props.colorValueHandler} />
         </div>
         <Button
           variant="contained"
-          onClick={this.addTextHandle}
+          onClick={this.props.addTextHandle}
         >
           Add Heading
         </Button>

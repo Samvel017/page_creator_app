@@ -44,7 +44,7 @@ const AccordionDetails = styled(MuiAccordionDetails)(({ theme }) => ({
   borderTop: '1px solid rgba(0, 0, 0, .125)',
 }));
 
-export default function Editor({pageAddHandler}) {
+export default function Editor({states,pageAddHandler,inputValueHandler,headValueHandler,colorValueHandler,addTextHandle}) {
   const [expanded, setExpanded] = React.useState('panel1');
 
   const handleChange = (panel) => (event, newExpanded) => {
@@ -59,7 +59,7 @@ export default function Editor({pageAddHandler}) {
           <Typography>Heading</Typography>
         </AccordionSummary>
         <AccordionDetails>
-          <Headings pageAddHandler={pageAddHandler}/>
+          <Headings addTextHandle={addTextHandle} colorValueHandler={colorValueHandler} headValueHandler={headValueHandler} inputValueHandler={inputValueHandler} states={states} pageAddHandler={pageAddHandler}/>
         </AccordionDetails>
       </Accordion>
       <Accordion sx={{  maxWidth: 350 }} expanded={expanded === 'panel2'} onChange={handleChange('panel2')}>
@@ -67,7 +67,7 @@ export default function Editor({pageAddHandler}) {
           <Typography>Paragraph</Typography>
         </AccordionSummary>
         <AccordionDetails>
-          <Paragraphs pageAddHandler={pageAddHandler}/>
+          <Paragraphs addTextHandle={addTextHandle} colorValueHandler={colorValueHandler} headValueHandler={headValueHandler} inputValueHandler={inputValueHandler} states={states} pageAddHandler={pageAddHandler}/>
         </AccordionDetails>
       </Accordion>
     </div>
