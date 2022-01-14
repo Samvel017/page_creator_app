@@ -10,6 +10,7 @@ export default class App extends Component {
     head: 'h1',
     color: 'black',
     type: 'heading',
+    edit: false
   };
 
   editTextFunction = (page, newText) => {
@@ -27,6 +28,26 @@ export default class App extends Component {
     this.setState({
       pages: newPages,
     });
+  };
+  clickedToggleHandler = (page) => {
+    let index = this.state.pages.indexOf(page);
+    let newPages = [...this.state.pages];
+    newPages[index].edit = true;
+    this.setState({
+      pages: newPages,
+    });
+  };
+  editEndHandle = (page) => {
+    if (page.text !== '') {
+      let index = this.state.pages.indexOf(page);
+      let newPages = [...this.state.pages];
+      newPages[index].edit = false;
+      this.setState({
+        pages: newPages,
+      });
+    } else {
+      alert('Please fill input')
+    }
   };
   removeFunction = (indexItem) => {
     this.setState((state) => {
@@ -52,7 +73,7 @@ export default class App extends Component {
       color: e,
     });
   };
-
+  
   addTextHandle = () => {
     if (this.state.text !== '') {
       this.pageAddHandler({
@@ -60,6 +81,7 @@ export default class App extends Component {
         head: this.state.head,
         color: this.state.color,
         type: this.state.type,
+        edit: this.state.edit
       });
       this.setState({
         text: '',
@@ -75,9 +97,7 @@ export default class App extends Component {
     }
   };
   pageAddHandler = (page) => {
-    console.log(page, 'page');
     let array = [...this.state.pages, page];
-    console.log(array, 'array');
     this.setState({
       pages: array,
     });
@@ -100,6 +120,8 @@ export default class App extends Component {
           editTextFunction={this.editTextFunction}
           inputValueHandler={this.inputValueHandler}
           pages={this.state.pages}
+          clickedToggleHandler={this.clickedToggleHandler}
+          editEndHandle={this.editEndHandle}
         />
       </div>
     );

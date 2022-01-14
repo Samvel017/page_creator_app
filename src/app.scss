@@ -96,3 +96,16 @@ body {
   align-items: center;
   grid-gap: 20px;
 }
+.heading-block {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+}
+.heading-text {
+  word-wrap: break-word;
+  max-width: 800px;
+}
+.paragraph-text {
+  word-wrap: break-word;
+  max-width: 800px;
+}

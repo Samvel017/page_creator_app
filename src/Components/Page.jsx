@@ -8,10 +8,6 @@ import Select from '@mui/material/Select';
 import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
 
 export default class Page extends Component {
-  state = {
-    clicked: false,
-  };
-
   editChange = (page, e) => {
     this.props.editTextFunction(page, e.target.value);
   };
@@ -20,29 +16,44 @@ export default class Page extends Component {
   };
   headFunc = (page) => {
     if (page.head === 'h1') {
-      return <h1 style={{ color: page.color }}>{page.text}</h1>;
+      return (
+        <h1 className="heading-text" style={{ color: page.color }}>
+          {page.text}
+        </h1>
+      );
     } else if (page.head === 'h2') {
-      return <h2 style={{ color: page.color }}>{page.text}</h2>;
+      return (
+        <h2 className="heading-text" style={{ color: page.color }}>
+          {page.text}
+        </h2>
+      );
     } else if (page.head === 'h3') {
-      return <h3 style={{ color: page.color }}>{page.text}</h3>;
+      return (
+        <h3 className="heading-text" style={{ color: page.color }}>
+          {page.text}
+        </h3>
+      );
     } else if (page.head === 'h4') {
-      return <h4 style={{ color: page.color }}>{page.text}</h4>;
+      return (
+        <h4 className="heading-text" style={{ color: page.color }}>
+          {page.text}
+        </h4>
+      );
     } else if (page.head === 'h5') {
-      return <h5 style={{ color: page.color }}>{page.text}</h5>;
+      return (
+        <h5 className="heading-text" style={{ color: page.color }}>
+          {page.text}
+        </h5>
+      );
     } else {
-      return <h6 style={{ color: page.color }}>{page.text}</h6>;
+      return (
+        <h6 className="heading-text" style={{ color: page.color }}>
+          {page.text}
+        </h6>
+      );
     }
   };
-  clickedToggleHandler = () => {
-    this.setState({
-      clicked: true,
-    });
-  };
-  editEndHandle = () => {
-    this.setState({
-      clicked: false,
-    });
-  };
+
   render() {
     let { pages } = this.props;
     const colors = ['black', 'red', 'blue', 'green'];
@@ -57,7 +68,7 @@ export default class Page extends Component {
               <div key={index}>
                 {page.type === 'heading' ? (
                   <div className="heading-block">
-                    {this.state.clicked ? (
+                    {page.edit ? (
                       <div>
                         <input
                           style={{ color: page.color }}
@@ -67,20 +78,20 @@ export default class Page extends Component {
                             this.editChange(page, e);
                           }}
                           onKeyDown={(e) =>
-                            e.keyCode === 13 && this.editEndHandle()
+                            e.keyCode === 13 && this.props.editEndHandle(page)
                           }
                         />
                       </div>
                     ) : (
                       <div
                         onDoubleClick={() => {
-                          this.clickedToggleHandler();
+                          this.props.clickedToggleHandler(page);
                         }}
                       >
                         {this.headFunc(page)}
                       </div>
                     )}
-                    {this.state.clicked ? (
+                    {page.edit ? (
                       <div className="edit-tools">
                         <FormControl
                           variant="standard"
@@ -109,7 +120,9 @@ export default class Page extends Component {
                         </FormControl>
                         <Button
                           className="edit-end"
-                          onClick={this.editEndHandle}
+                          onClick={() => {
+                            this.props.editEndHandle(page);
+                          }}
                         >
                           <CheckCircleOutlineIcon />
                         </Button>
@@ -128,7 +141,7 @@ export default class Page extends Component {
                   </div>
                 ) : (
                   <div className="paragraph-block">
-                    {this.state.clicked ? (
+                    {page.edit ? (
                       <input
                         style={{ color: page.color }}
                         className="edit-input"
@@ -137,13 +150,14 @@ export default class Page extends Component {
                           this.editChange(page, e);
                         }}
                         onKeyDown={(e) =>
-                          e.keyCode === 13 && this.editEndHandle()
+                          e.keyCode === 13 && this.props.editEndHandle(page)
                         }
                       />
                     ) : (
                       <p
+                        className="paragraph-text"
                         onDoubleClick={() => {
-                          this.clickedToggleHandler();
+                          this.props.clickedToggleHandler(page);
                         }}
                         style={{
                           color: page.color,
@@ -153,7 +167,7 @@ export default class Page extends Component {
                         {page.text}
                       </p>
                     )}
-                    {this.state.clicked ? (
+                    {page.edit ? (
                       <div className="edit-tools">
                         <FormControl
                           variant="standard"
@@ -182,7 +196,9 @@ export default class Page extends Component {
                         </FormControl>
                         <Button
                           className="edit-end"
-                          onClick={this.editEndHandle}
+                          onClick={() => {
+                            this.props.editEndHandle(page);
+                          }}
                         >
                           <CheckCircleOutlineIcon />
                         </Button>
